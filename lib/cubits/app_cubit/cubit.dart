@@ -36,7 +36,18 @@ class AppCubit extends Cubit<AppStates> {
 
   void changeIndex(int index) {
     currentIndex = index;
-    emit(ChangeNavBarState(currentIndex: currentIndex));
+    emit(
+      ChangeNavBarState(
+        currentIndex: currentIndex,
+      ),
+    );
+  }
+
+  void changeBottomSheetState({required bool isShown, required IconData icon}) {
+    isBottomSheetShown = isShown;
+    fabIcon = icon;
+
+    emit(ChangeBottomSheetState());
   }
 
   void createDatabase() {
@@ -82,13 +93,6 @@ class AppCubit extends Cubit<AppStates> {
     }
     emit(GetDatabaseState());
     return tasksList;
-  }
-
-  void changeBottomSheetState({required bool isShown, required IconData icon}) {
-    isBottomSheetShown = isShown;
-    fabIcon = icon;
-
-    emit(ChangeBottomSheetState());
   }
 
   Future<void> insertToDatabase({
